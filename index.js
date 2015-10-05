@@ -52,7 +52,7 @@ function writeFile (outDir, vars, file) {
     const fileName = file.path
     const inFile = file.fullPath
     const parentDir = file.parentDir
-    const outFile = path.join(outDir, reDot(fileName))
+    const outFile = path.join(outDir, fileName)
 
     mkdirp(path.join(outDir, parentDir), function (err) {
       if (err) return done(err)
@@ -64,10 +64,4 @@ function writeFile (outDir, vars, file) {
       pump(rs, ts, ws, done)
     })
   }
-}
-
-// replace leading underscores with dots
-// str -> str
-function reDot (filename) {
-  return filename.replace(/^\_./, '.')
 }
